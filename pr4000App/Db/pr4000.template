@@ -1,0 +1,56 @@
+# pr4000.template
+#% macro, __doc__, Template database for a PR4000 Baratron gauge controller
+# Ian Gillingham - December 2014
+#
+# substitutions:
+#% macro, device, Device name
+#% macro, channel, Channel number
+#% macro, port,   Asyn Port name, e.g. ty_40_0
+################################################################################
+# Pressure Unit
+#
+#% controldesk Pressure Unit readback
+record(mbbi, "$(device):UNIT")
+{
+    field(DESC, "Pressure Unit")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol range($(channel)) $(port) 0")
+    field(SCAN, "10 second")
+    field(ZRST, "ubar")
+    field(ONST, "mbar")
+    field(TWST, "bar")
+    field(THST, "mTor")
+    field(FRST, "Tor")
+    field(FVST, "kTor")
+    field(SXST, "Pa")
+    field(SVST, "kPa")
+    field(EIST, "mH2O")
+    field(NIST, "cH2O")
+    field(TEST, "PSI")
+    field(ELST, "N/qm")
+}
+################################################################################
+# Controller Version
+#
+#% archiver 10 Monitor
+#% controldesk Controller Version readback
+record(stringin, "$(device):ID")
+{
+    field(DESC, "Controller Version")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol id() $(port) 0")
+    field(SCAN, "10 second")
+}
+
+#  Actual value % of FS formatted in selected range
+#  -005.00 - 110.00
+#
+record(ai, "$(device):AV")
+{
+    field(DESC, "Actual Value Readback")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol av($(channel)) $(port) 0")
+    field(SCAN, "Passive")
+    #field(SCAN, "10 second")
+    field(PREC, "2")
+}
