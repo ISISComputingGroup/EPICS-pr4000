@@ -1,0 +1,273 @@
+# pr4000chan.template
+#% macro, __doc__, Template database for a PR4000 Baratron gauge controller channel
+# Ian Gillingham - December 2014
+#
+# substitutions:
+#% macro, device, Device name
+#% macro, port,   Asyn Port name, e.g. ty_40_0
+#% macro, channel, Channel number
+
+# The :DISA record is essentially a development
+# tool and not intended for use in the field.
+#
+record(bi, "$(device):CH$(channel):DISA")
+    {
+    field(DESC, "Channel Disable")
+    field(VAL,  "0")
+    field(ZNAM, "ENABLE")
+    field(ONAM, "DISABLE")
+    field(PINI,  "YES")
+    }
+
+
+#  Actual value % of FS formatted in selected range
+#  -005.00 - 110.00
+#
+record(ai, "$(device):CH$(channel):AV")
+{
+    field(DESC, "Actual Value Readback")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol av($(channel)) $(port)")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "5 second")
+    field(PREC, "2")
+}
+    
+record(ao, "$(device):CH$(channel):SPSET")
+    {
+    field(DESC, "Setpoint Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol sp_set($(channel)) $(port)")
+    }
+
+record(ai, "$(device):CH$(channel):SP")
+    {
+    field(DESC, "Setpoint")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol sp($(channel)) $(port)")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "5 second")
+    }
+
+record(ai, "$(device):CH$(channel):EXTIN")
+    {
+    field(DESC, "External Input")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol extinp($(channel)) $(port)")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "5 second")
+    }
+
+
+record(mbbi, "$(device):CH$(channel):VALVE")
+    {
+    field(DESC, "Valve status")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol valve($(channel)) $(port)")
+    field(ZRVL, "0")
+    field(ZRST, "OFF")
+    field(ONVL, "1")
+    field(ONST, "ON")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "2 second")
+    }
+
+record(mbbo, "$(device):CH$(channel):VALVE_SET")
+    {
+    field(DESC, "Valve Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol valve_set($(channel)) $(port)")
+    field(ZRVL, "0")
+    field(ZRST, "OFF")
+    field(ONVL, "1")
+    field(ONST, "ON")
+    }
+    
+record(mbbi, "$(device):CH$(channel):RELAY")
+    {
+    field(DESC, "Relay status")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol relay($(channel)) $(port)")
+    field(ZRVL, "0")
+    field(ZRST, "OFF")
+    field(ONVL, "1")
+    field(ONST, "ON")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "2 second")
+    }
+
+record(mbbo, "$(device):CH$(channel):RELAYSET")
+    {
+    field(DESC, "Relay Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol relay_set($(channel)) $(port)")
+    field(ZRVL, "0")
+    field(ZRST, "OFF")
+    field(ONVL, "1")
+    field(ONST, "ON")
+    }
+    
+record(ao, "$(device):CH$(channel):GAINSET")
+    {
+    field(DESC, "Gain Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol gain_set($(channel)) $(port)")
+    }
+
+record(ai, "$(device):CH$(channel):GAIN")
+    {
+    field(DESC, "Gain")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol gain($(channel)) $(port)")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "5 second")
+    }
+
+record(ao, "$(device):CH$(channel):OFFSETSET")
+    {
+    field(DESC, "Offset Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol offset_set($(channel)) $(port)")
+    }
+
+record(ai, "$(device):CH$(channel):OFFSET")
+    {
+    field(DESC, "Offset")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol offset($(channel)) $(port)")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "5 second")
+    }
+
+record(ao, "$(device):CH$(channel):RTDOFFSETSET")
+    {
+    field(DESC, "RTD Offset Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol rtdoffset_set($(channel)) $(port)")
+    }
+
+record(ai, "$(device):CH$(channel):RTDOFFSET")
+    {
+    field(DESC, "RTD Offset")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol rtdoffset($(channel)) $(port)")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "5 second")
+    }
+
+record(ao, "$(device):CH$(channel):AUTOZERO")
+    {
+    field(DESC, "Autozero")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol autozero($(channel)) $(port)")
+    }
+
+record(ao, "$(device):CH$(channel):INPRANGESET")
+    {
+    field(DESC, "Input Range Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol inputrange_set($(channel)) $(port)")
+    }
+
+record(ai, "$(device):CH$(channel):INPUTRANGE")
+    {
+    field(DESC, "Input Range")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol inputrange($(channel)) $(port)")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "5 second")
+    }
+
+record(ao, "$(device):CH$(channel):OUTPRANGESET")
+    {
+    field(DESC, "Output Range Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol outputrange_set($(channel)) $(port)")
+    }
+
+record(ai, "$(device):CH$(channel):OUTPUTRANGE")
+    {
+    field(DESC, "Output Range")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol outputrange($(channel)) $(port)")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "5 second")
+    }
+
+record(ai, "$(device):CH$(channel):EXTINPUTRANGE")
+    {
+    field(DESC, "External Input Range")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol extinputrange($(channel)) $(port)")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "5 second")
+    }
+
+record(ao, "$(device):CH$(channel):EXTINPRANGESET")
+    {
+    field(DESC, "External Input Range Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol extinputrange_set($(channel)) $(port)")
+    }
+
+record(ao, "$(device):CH$(channel):EXTOUTPRANGESET")
+    {
+    field(DESC, "External Output Range Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol extoutputrange_set($(channel)) $(port)")
+    }
+
+record(ai, "$(device):CH$(channel):EXTOUTPUTRANGE")
+    {
+    field(DESC, "External Output Range")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol extoutputrange($(channel)) $(port)")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "5 second")
+    }
+
+record(mbbi, "$(device):CH$(channel):SIGNALMODE")
+    {
+    field(DESC, "Signal Mode")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol signalmode($(channel)) $(port)")
+    field(ZRVL, "0")
+    field(ZRST, "METER")
+    field(ONVL, "1")
+    field(ONST, "OFF")
+    field(ONVL, "2")
+    field(ONST, "INDEP")
+    field(ONVL, "3")
+    field(ONST, "EXTRN")
+    field(ONVL, "4")
+    field(ONST, "SLAVE")
+    field(ONVL, "5")
+    field(ONST, "RTD")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "2 second")
+    }
+
+record(mbbo, "$(device):CH$(channel):SIGNALMODESET")
+    {
+    field(DESC, "Signal Mode Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol signalmode_set($(channel)) $(port)")
+    field(ZRVL, "0")
+    field(ZRST, "METER")
+    field(ONVL, "1")
+    field(ONST, "OFF")
+    field(ONVL, "2")
+    field(ONST, "INDEP")
+    field(ONVL, "3")
+    field(ONST, "EXTRN")
+    field(ONVL, "4")
+    field(ONST, "SLAVE")
+    field(ONVL, "5")
+    field(ONST, "RTD")
+    field(SDIS, "$(device):CH$(channel):DISA")
+    field(SCAN, "2 second")
+    }
+
+
+
+    
