@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 6
-y 25
+x 162
+y 663
 w 400
-h 540
+h 193
 font "arial-medium-r-14.0"
 ctlFont "arial-bold-r-14.0"
 btnFont "arial-bold-r-14.0"
@@ -20,29 +20,9 @@ ctlBgColor2 index 14
 topShadowColor index 1
 botShadowColor index 11
 showGrid
-snapToGrid
+disableScroll
 endScreenProperties
 
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 160
-y 31
-w 156
-h 22
-fgColor index 25
-bgColor index 3
-inconsistentColor index 0
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P):ANALOGUEOUTPUTFORMAT"
-indicatorPv "$(P):ANALOGUEOUTPUTFORMAT_RBV"
-font "arial-bold-r-12.0"
-endObjectProperties
-
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
@@ -50,130 +30,199 @@ major 4
 minor 1
 release 1
 x 0
-y 31
-w 156
-h 22
-font "arial-bold-r-12.0"
-fgColor index 14
-bgColor index 3
-value {
-  "  Analogue Output Format  "
-}
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 160
-y 58
-w 156
-h 22
-fgColor index 25
-bgColor index 3
-inconsistentColor index 0
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P):UNITS"
-indicatorPv "$(P):UNITS_RBV"
-font "arial-bold-r-12.0"
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 0
-y 58
-w 156
-h 22
-font "arial-bold-r-12.0"
-fgColor index 14
-bgColor index 3
-value {
-  "  Units  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 6
-release 0
-x 240
-y 85
-w 76
-h 22
-controlPv "$(P):USERTAG_RBV"
-font "arial-bold-r-12.0"
+y 0
+w 400
+h 30
+font "arial-bold-r-16.0"
 fontAlign "center"
-fgColor index 15
-bgColor index 10
-limitsFromDb
-nullColor index 0
-showUnits
-newPos
+fgColor index 14
+bgColor index 53
+value {
+  "$(device)"
+}
 endObjectProperties
 
-# (Textentry)
-object TextentryClass
+# (Textupdate)
+object TextupdateClass
 beginObjectProperties
 major 10
 minor 0
 release 0
-x 160
-y 85
-w 76
+x 150
+y 69
+w 141
+h 20
+controlPv "$(device):ID"
+displayMode "exp"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 30
+y 69
+w 82
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Controller ID"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 150
+y 106
+w 141
+h 20
+controlPv "$(device):REMOTEMODE"
+displayMode "exp"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 30
+y 106
+w 91
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Remote Mode"
+}
+autoSize
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 4
+release 0
+x 25
+y 152
+w 115
+h 24
+fgColor index 43
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+font "arial-medium-r-14.0"
+buttonLabel "Setup Channel 1"
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "pr4ksetupchannel.edl"
+}
+setPosition {
+  0 "parentWindow"
+}
+symbols {
+  0 "chan=1"
+}
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 4
+release 0
+x 155
+y 152
+w 115
+h 24
+fgColor index 43
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+font "arial-medium-r-14.0"
+buttonLabel "Setup Channel 2"
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "pr4ksetupchannel.edl"
+}
+setPosition {
+  0 "parentWindow"
+}
+symbols {
+  0 "chan=2"
+}
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 306
+y 104
+w 74
 h 22
-controlPv "$(P):USERTAG"
 fgColor index 25
 bgColor index 3
-fill
+inconsistentColor index 0
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(device):REMOTEMODE_SET"
+indicatorPv "$(device):REMOTEMODE"
 font "arial-bold-r-12.0"
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
+# (Exit Button)
+object activeExitButtonClass
 beginObjectProperties
 major 4
 minor 1
-release 1
-x 0
-y 85
-w 156
-h 22
-font "arial-bold-r-12.0"
-fgColor index 14
-bgColor index 3
-value {
-  "  User Tag  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 6
 release 0
-x 160
-y 112
-w 156
-h 22
-controlPv "$(P):TRANSDUCERTYPE_RBV"
-font "arial-bold-r-12.0"
-fontAlign "center"
-fgColor index 15
-bgColor index 10
-limitsFromDb
-nullColor index 0
-showUnits
-newPos
+x 305
+y 152
+w 72
+h 24
+fgColor index 46
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+label "EXIT"
+font "arial-medium-r-14.0"
+3d
 endObjectProperties
 
 # (Static Text)
@@ -182,15 +231,18 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 0
-y 112
-w 156
-h 22
-font "arial-bold-r-12.0"
+x 30
+y 38
+w 104
+h 18
+font "arial-bold-r-16.0"
+fontAlign "center"
 fgColor index 14
-bgColor index 3
+bgColor index 0
+useDisplayBg
 value {
-  "  Transducer Type  "
+  "MKS PR4000"
 }
+autoSize
 endObjectProperties
 

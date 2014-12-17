@@ -17,7 +17,7 @@ Separator    = ",";
 # This makes it more likely that the first command sent is received OK.
 # NB we dont wait for a response to the dummy command because if it didnt arrive (e.g. rs232 unplugged) then
 # streams would issue a replyTimeout exception and stop the ioc.
-@init{out "RE";}
+@init{out "RE"; in "";}
 
 id              { out "?ID"; in "%s";}
 av              { out "AV\$1"; in "%f";}
@@ -40,6 +40,8 @@ offset_set      { out "OF\$1,%d"; in ""; }
 rtdoffset       { out "?RO\$1"; in "%d";}
 rtdoffset_set   { out "RO\$1,%d"; in ""; }
 autozero        { out "AZ\$1"; in "%d";}
+writerange      { out "RG\$1,%(A).4f,%(B)d"; in ""; }
+readrange       { out "?RG\$1"; in "%f,%(\$2)d"; }
 inputrange      { out "?IN\$1"; in "%d";}
 inputrange_set  { out "IN\$1,%d"; in ""; }
 outputrange     { out "?OT\$1"; in "%d";}
@@ -50,6 +52,16 @@ extoutputrange     { out "?EO\$1"; in "%d";}
 extoutputrange_set { out "EO\$1,%d"; in ""; }
 signalmode_set     { out "SM\$1,%d"; in ""; }
 signalmode         { out "?SM\$1"; in "%d"; }
+scale              { out "?SC\$1"; in "%f"; }
+scale_set          { out "SC\$1,%f"; in ""; }
+limitmode_set      { out "LM\$1,%d"; in ""; }
+limitmode          { out "?LM\$1"; in "%d"; }
+upperlimit         { out "?UL\$1"; in "%f"; }
+upperlimit_set     { out "UL\$1,%f"; in ""; }
+lowerlimit         { out "?LL\$1"; in "%f"; }
+lowerlimit_set     { out "LL\$1,%f"; in ""; }
+formularelay       { out "?FR\$1"; in "%s"; }
+formularelay_set   { out "FR\$1,%s"; in ""; }
 
 
 #debug
