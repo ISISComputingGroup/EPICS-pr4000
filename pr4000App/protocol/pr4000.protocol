@@ -5,22 +5,52 @@
 #
 
 locktimeout = 5000;
-terminator   = "CR";
-replytimeout = 1000;
-readtimeout  = 1000;
+terminator     = CR;
+interminator   = CR;
+outterminator  = CR;
+replytimeout = 4000;
+readtimeout  = 2000;
 extrainput   = Ignore;
-
+Separator    = ",";
 
 # Send an initial dummy command to clear out any garbage the controller has already received.
 # This makes it more likely that the first command sent is received OK.
 # NB we dont wait for a response to the dummy command because if it didnt arrive (e.g. rs232 unplugged) then
 # streams would issue a replyTimeout exception and stop the ioc.
-@init{out " ";}
+@init{out "RE";}
 
-#
-# Use a regular expression to not care about anything before ACK.
-# This is important with the MKS firmware update in Feb 2012, where '@' will precede all responses,
-# but we still need backward compatibility with units which do not emit '@'.
-#
-id { out "?ID"; in "%s";}
+id              { out "?ID"; in "%s";}
+av              { out "AV\$1"; in "%f";}
+dt              { out "?DT"; in "%s%*s";}
+dt_set          { out "DT,%s"; in ""; }
+remotemode      { out "?RT"; in "%{OFF|ON}"; }
+remotemode_set  { out "RT,%{OFF|ON}"; in ""; }
+sp              { out "?SP\$1"; in "%f";}
+sp_set          { out "SP\$1,%f"; in ""; }
+extinp          { out "EX\$1"; in "%f"; }
+status          { out "ST"; in "%d"; }
+valve           { out "?VL\$1"; in "%{OFF|ON}"; }
+valve_set       { out "VL\$1,%{OFF|ON}"; in ""; }
+relay           { out "?RL\$1"; in "%{OFF|ON}"; }
+relay_set       { out "RL\$1,%{OFF|ON}"; in ""; }
+gain            { out "?GN\$1"; in "%f";}
+gain_set        { out "GN\$1,%f"; in ""; }
+offset          { out "?OF\$1"; in "%d";}
+offset_set      { out "OF\$1,%d"; in ""; }
+rtdoffset       { out "?RO\$1"; in "%d";}
+rtdoffset_set   { out "RO\$1,%d"; in ""; }
+autozero        { out "AZ\$1"; in "%d";}
+inputrange      { out "?IN\$1"; in "%d";}
+inputrange_set  { out "IN\$1,%d"; in ""; }
+outputrange     { out "?OT\$1"; in "%d";}
+outputrange_set { out "OT\$1,%d"; in ""; }
+extinputrange      { out "?EI\$1"; in "%d";}
+extinputrange_set  { out "EI\$1,%d"; in ""; }
+extoutputrange     { out "?EO\$1"; in "%d";}
+extoutputrange_set { out "EO\$1,%d"; in ""; }
+signalmode_set     { out "SM\$1,%d"; in ""; }
+signalmode         { out "?SM\$1"; in "%d"; }
 
+
+#debug
+debug { ExtraInput = Ignore; out "%s"; in "%s"}
