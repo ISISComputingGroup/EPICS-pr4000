@@ -1,777 +1,371 @@
 4 0 1
 beginScreenProperties
-h 540
 major 4
 minor 0
 release 1
+x 18
+y 75
 w 400
-x 0
-y 0
-bgColor index 3
-botShadowColor index 11
+h 540
+font "arial-medium-r-14.0"
+ctlFont "arial-bold-r-14.0"
 btnFont "arial-bold-r-14.0"
-ctlBgColor1 index 3
-ctlBgColor2 index 14
+fgColor index 14
+bgColor index 3
+textColor index 14
 ctlFgColor1 index 25
 ctlFgColor2 index 0
-ctlFont "arial-bold-r-14.0"
-fgColor index 14
-font "arial-medium-r-14.0"
+ctlBgColor1 index 3
+ctlBgColor2 index 14
+topShadowColor index 1
+botShadowColor index 11
 showGrid
 snapToGrid
-textColor index 14
-topShadowColor index 1
+disableScroll
 endScreenProperties
 
-# (Text Monitor)
-object activeXTextDspClass:noedit
+# (Static Text)
+object activeXTextClass
 beginObjectProperties
-h 22
+major 4
+minor 1
+release 1
+x 0
+y 0
+w 400
+h 30
+font "arial-bold-r-16.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 53
+value {
+  "$(device)"
+}
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
 major 4
 minor 4
 release 0
-w 156
-x 160
-y 4
-bgColor index 10
-controlPv "$(P):CONNECTION_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
-fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 4
+x 110
+y 250
+w 72
+h 24
+fgColor index 43
 bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Connection  "
+topShadowColor index 1
+botShadowColor index 11
+font "arial-medium-r-14.0"
+buttonLabel "Interlocks"
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "pr4kinterlocks.edl"
+}
+setPosition {
+  0 "parentWindow"
 }
 endObjectProperties
 
-# (Menu Button)
-object activeMenuButtonClass
+# (Rectangle)
+object activeRectangleClass
 beginObjectProperties
-h 22
 major 4
 minor 0
 release 0
-w 156
-x 160
-y 31
-bgColor index 3
-botShadowColor index 11
-controlPv "$(P):ANALOGUEOUTPUTFORMAT"
-fgColor index 25
-font "arial-bold-r-12.0"
-inconsistentColor index 0
-indicatorPv "$(P):ANALOGUEOUTPUTFORMAT_RBV"
-topShadowColor index 1
+x 10
+y 50
+w 360
+h 190
+lineColor index 14
+fill
+fillColor index 5
 endObjectProperties
 
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
-h 22
 major 4
 minor 1
-release 0
-w 156
-x 0
-y 31
-bgColor index 3
+release 1
+x 20
+y 120
+w 60
+h 16
+font "arial-medium-r-14.0"
 fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
+bgColor index 0
+useDisplayBg
 value {
-  "  Analogue Output Format  "
+  "Pressure"
 }
+autoSize
 endObjectProperties
 
-# (Menu Button)
-object activeMenuButtonClass
+# (Group)
+object activeGroupClass
 beginObjectProperties
-h 22
 major 4
 minor 0
 release 0
-w 156
-x 160
-y 58
-bgColor index 3
-botShadowColor index 11
-controlPv "$(P):UNITS"
-fgColor index 25
-font "arial-bold-r-12.0"
-inconsistentColor index 0
-indicatorPv "$(P):UNITS_RBV"
-topShadowColor index 1
+x 20
+y 40
+w 48
+h 16
+
+beginGroup
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 15
+y 40
+w 48
+h 16
+lineColor index 14
+fillColor index 3
 endObjectProperties
 
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
-h 22
 major 4
 minor 1
-release 0
-w 156
-x 0
-y 58
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
+release 1
+x 15
+y 40
+w 48
+h 16
+font "arial-medium-r-12.0"
+fontAlign "center"
+fgColor index 1
+bgColor index 8
 value {
-  "  Units  "
+  "Details"
 }
 endObjectProperties
 
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
-major 4
-minor 4
-release 0
-w 76
-x 240
-y 85
-bgColor index 10
-controlPv "$(P):USERTAG_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
-fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
+endGroup
+
 endObjectProperties
 
-# (Textentry)
-object TextentryClass
+# (Static Text)
+object activeXTextClass
 beginObjectProperties
-h 22
+major 4
+minor 1
+release 1
+x 150
+y 60
+w 65
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Channel 1"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 250
+y 60
+w 65
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Channel 2"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 20
+y 150
+w 42
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Range"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 20
+y 180
+w 80
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Relay status"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
 major 10
 minor 0
 release 0
-w 76
-x 160
-y 85
-bgColor index 3
-controlPv "$(P):USERTAG"
-fgColor index 25
+x 147
+y 100
+w 70
+h 22
+controlPv "$(device):CH1:AV"
+displayMode "exp"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
 fill
-font "arial-bold-r-12.0"
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 85
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  User Tag  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
-major 4
-minor 4
-release 0
-w 156
-x 160
-y 112
-bgColor index 10
-controlPv "$(P):TRANSDUCERTYPE_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
+font "arial-bold-r-14.0"
 fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
+lineWidth 2
+lineAlarm
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
+# (Textupdate)
+object TextupdateClass
 beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 112
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Transducer Type  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
-major 4
-minor 4
-release 0
-w 156
-x 160
-y 139
-bgColor index 10
-controlPv "$(P):FIRMWAREVERSION_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
-fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 139
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Firmware Version  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
-major 4
-minor 4
-release 0
-w 156
-x 160
-y 166
-bgColor index 10
-controlPv "$(P):HARDWAREVERSION_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
-fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 166
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Hardware Version  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
-major 4
-minor 4
-release 0
-w 156
-x 160
-y 193
-bgColor index 10
-controlPv "$(P):MANUFACTURER_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
-fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 193
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Manufacturer  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
-major 4
-minor 4
-release 0
-w 156
-x 160
-y 220
-bgColor index 10
-controlPv "$(P):MODEL_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
-fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 220
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Model  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
-major 4
-minor 4
-release 0
-w 156
-x 160
-y 247
-bgColor index 10
-controlPv "$(P):PRESSURE_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
-fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 247
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Pressure  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
-major 4
-minor 4
-release 0
-w 156
-x 160
-y 274
-bgColor index 10
-controlPv "$(P):SERIALNUMBER_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
-fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 274
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Serial Number  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
-major 4
-minor 4
-release 0
-w 156
-x 160
-y 301
-bgColor index 10
-controlPv "$(P):TIMEON_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
-fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 301
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Time On  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
-major 4
-minor 4
-release 0
-w 156
-x 160
-y 328
-bgColor index 10
-controlPv "$(P):TRANSDUCERTEMPERATURE_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
-fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 328
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Transducer Temperature  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
-major 4
-minor 4
-release 0
-w 76
-x 240
-y 355
-bgColor index 10
-controlPv "$(P):SETPOINT_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
-fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
-endObjectProperties
-
-# (Textentry)
-object TextentryClass
-beginObjectProperties
-h 22
 major 10
 minor 0
 release 0
-w 76
-x 160
-y 355
-bgColor index 3
-controlPv "$(P):SETPOINT"
-fgColor index 25
+x 247
+y 100
+w 70
+h 22
+controlPv "$(device):CH2:AV"
+displayMode "exp"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
 fill
-font "arial-bold-r-12.0"
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 355
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Set Point  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
-major 4
-minor 4
-release 0
-w 76
-x 240
-y 382
-bgColor index 10
-controlPv "$(P):SETPOINTHYSTERESIS_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
+font "arial-bold-r-14.0"
 fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
+lineWidth 2
+lineAlarm
 endObjectProperties
 
-# (Textentry)
-object TextentryClass
+# (Textupdate)
+object TextupdateClass
 beginObjectProperties
-h 22
 major 10
 minor 0
 release 0
-w 76
-x 160
-y 382
-bgColor index 3
-controlPv "$(P):SETPOINTHYSTERESIS"
-fgColor index 25
+x 150
+y 180
+w 70
+h 22
+controlPv "$(device):STRELAY0"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
 fill
-font "arial-bold-r-12.0"
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
+# (Textupdate)
+object TextupdateClass
 beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 382
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Set Point Hysteresis  "
-}
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-h 22
-major 4
+major 10
 minor 0
 release 0
-w 156
-x 160
-y 409
-bgColor index 3
-botShadowColor index 11
-controlPv "$(P):SETPOINTDIRECTION"
-fgColor index 25
-font "arial-bold-r-12.0"
-inconsistentColor index 0
-indicatorPv "$(P):SETPOINTDIRECTION_RBV"
-topShadowColor index 1
+x 250
+y 180
+w 70
+h 22
+controlPv "$(device):STRELAY1"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
+# (Related Display)
+object relatedDisplayClass
 beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 409
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Set Point Direction  "
-}
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-h 22
-major 4
-minor 0
-release 0
-w 156
-x 160
-y 436
-bgColor index 3
-botShadowColor index 11
-controlPv "$(P):SETPOINTENABLE"
-fgColor index 25
-font "arial-bold-r-12.0"
-inconsistentColor index 0
-indicatorPv "$(P):SETPOINTENABLE_RBV"
-topShadowColor index 1
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-h 22
-major 4
-minor 1
-release 0
-w 156
-x 0
-y 436
-bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Set Point Enable  "
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-h 22
 major 4
 minor 4
 release 0
-w 156
-x 160
-y 463
-bgColor index 10
-controlPv "$(P):SETPOINTSTATE_RBV"
-fgColor index 15
-font "arial-bold-r-12.0"
-fontAlign "center"
-limitsFromDb
-nullColor index 0
-showUnits
+x 200
+y 250
+w 72
+h 24
+fgColor index 43
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+font "arial-medium-r-14.0"
+buttonLabel "Setup"
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "pr4ksetupcontroller.edl"
+}
+setPosition {
+  0 "parentWindow"
+}
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
+# (Exit Button)
+object activeExitButtonClass
 beginObjectProperties
-h 22
 major 4
 minor 1
 release 0
-w 156
-x 0
-y 463
+x 300
+y 250
+w 72
+h 24
+fgColor index 46
 bgColor index 3
-fgColor index 14
-font "arial-bold-r-12.0"
-fontAlign "left"
-value {
-  "  Set Point State  "
-}
+topShadowColor index 1
+botShadowColor index 11
+label "EXIT"
+font "arial-medium-r-14.0"
+3d
 endObjectProperties
+
