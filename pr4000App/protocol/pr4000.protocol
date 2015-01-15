@@ -56,12 +56,13 @@ scale              { out "?SC\$1"; in "%f"; }
 scale_set          { out "SC\$1,%f"; in ""; }
 limitmode_set      { out "LM\$1,%d"; in ""; }
 limitmode          { out "?LM\$1"; in "%d"; }
-upperlimit         { out "?UL\$1"; in "%f"; }
+upperlimit         { out "?UL\$1"; in "%f"; @mismatch{in "%(\$2.VAL)s";} }
 upperlimit_set     { out "UL\$1,%f"; in ""; }
-lowerlimit         { out "?LL\$1"; in "%f"; }
+lowerlimit         { out "?LL\$1"; in "%f"; @mismatch{in "%(\$2.VAL)s";} }
 lowerlimit_set     { out "LL\$1,%f"; in ""; }
 formularelay       { out "?FR\$1"; in "%s"; }
 formularelay_set   { out "FR\$1,%s"; in ""; }
+defaultmode_set    { out "DF,%{P|F}"; in ""; }
 
 
 #debug
