@@ -188,6 +188,19 @@ record(waveform, "$(device):RANGENAMES")
     field(PINI, "YES")
     }
 
+record(mbbo, "$(device):DEFAULTMODE_SET")
+    {
+    field(DESC, "Default Mode Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol defaultmode_set() $(port)")
+    field(DOL,  "0")
+    field(PINI, "YES")
+    field(ZRVL, "0")
+    field(ZRST, "PRESSURE")
+    field(ONVL, "1")
+    field(ONST, "FLOW")
+    }
+    
 
 
 
