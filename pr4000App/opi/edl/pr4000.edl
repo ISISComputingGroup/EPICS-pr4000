@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 24
-y 241
+x 36
+y 291
 w 387
 h 349
 font "arial-medium-r-14.0"
@@ -29,7 +29,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 1
+release 0
 x 0
 y 0
 w 400
@@ -63,7 +63,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 1
+release 0
 x 20
 y 110
 w 60
@@ -110,7 +110,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 1
+release 0
 x 15
 y 51
 w 48
@@ -133,7 +133,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 1
+release 0
 x 150
 y 70
 w 65
@@ -153,7 +153,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 1
+release 0
 x 250
 y 70
 w 65
@@ -173,7 +173,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 1
+release 0
 x 20
 y 150
 w 42
@@ -193,7 +193,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 1
+release 0
 x 20
 y 190
 w 80
@@ -219,7 +219,6 @@ y 110
 w 70
 h 22
 controlPv "$(device):CH1:AV"
-displayMode "exp"
 precision 1
 fgColor index 16
 fgAlarm
@@ -242,7 +241,6 @@ y 110
 w 70
 h 22
 controlPv "$(device):CH2:AV"
-displayMode "exp"
 precision 1
 fgColor index 16
 fgAlarm
@@ -302,7 +300,7 @@ endObjectProperties
 object relatedDisplayClass
 beginObjectProperties
 major 4
-minor 4
+minor 2
 release 0
 x 10
 y 300
@@ -354,7 +352,6 @@ y 150
 w 70
 h 22
 controlPv "$(device):CH1:RANGE"
-displayMode "exp"
 precision 1
 fgColor index 16
 fgAlarm
@@ -377,7 +374,6 @@ y 150
 w 70
 h 22
 controlPv "$(device):CH2:RANGE"
-displayMode "exp"
 precision 1
 fgColor index 16
 fgAlarm
@@ -393,7 +389,7 @@ endObjectProperties
 object relatedDisplayClass
 beginObjectProperties
 major 4
-minor 4
+minor 2
 release 0
 x 10
 y 260
@@ -404,7 +400,7 @@ bgColor index 3
 topShadowColor index 1
 botShadowColor index 11
 font "arial-medium-r-14.0"
-buttonLabel "Interlocks Channel 1"
+buttonLabel "Channel 1 Setup"
 numPvs 4
 numDsps 1
 displayFileName {
@@ -422,7 +418,7 @@ endObjectProperties
 object relatedDisplayClass
 beginObjectProperties
 major 4
-minor 4
+minor 2
 release 0
 x 230
 y 260
@@ -433,7 +429,7 @@ bgColor index 3
 topShadowColor index 1
 botShadowColor index 11
 font "arial-medium-r-14.0"
-buttonLabel "Interlocks Channel 2"
+buttonLabel "Channel 2 Setup"
 numPvs 4
 numDsps 1
 displayFileName {
@@ -452,7 +448,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 1
+release 0
 x 150
 y 40
 w 104
