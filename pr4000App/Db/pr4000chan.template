@@ -389,7 +389,7 @@ record(ai, "$(device):CH$(channel):UPPERLIMIT")
     {
     field(DESC, "Upper Limit")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol upperlimit($(channel)) $(port)")
+    field(INP,  "@pr4000.protocol upperlimit($(channel),$(device):CH$(channel):LASTERROR) $(port)")
     field(SDIS, "$(device):CH$(channel):DISA")
     field(SCAN, "5 second")
     }
@@ -405,7 +405,7 @@ record(ai, "$(device):CH$(channel):LOWERLIMIT")
     {
     field(DESC, "Lower Limit")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol lowerlimit($(channel)) $(port)")
+    field(INP,  "@pr4000.protocol lowerlimit($(channel),$(device):CH$(channel):LASTERROR) $(port)")
     field(SDIS, "$(device):CH$(channel):DISA")
     field(SCAN, "5 second")
     }
@@ -494,6 +494,15 @@ record(mbbo, "$(device):CH$(channel):UNITSLISTB")
     field(FLNK, "$(device):CH$(channel):RANGEUNITSSET")
     }
 
+
+record(stringin, "$(device):CH$(channel):LASTERROR")
+    {
+    field(DESC, "Error Message")
+    field(DTYP, "Soft Record")
+    field(INP,  "")
+    field(PINI,  "YES")
+    }
+    
 
 ## Next three records not currently used...
 ##
