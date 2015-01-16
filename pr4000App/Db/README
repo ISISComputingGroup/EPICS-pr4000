@@ -1,0 +1,24 @@
+Usage:
+
+The database templates should be instantiated in a fashion to that shown below:
+
+file pr4000.template
+    {
+    pattern { device               ,  port   }
+            { ${domain}-VA-GCTLR-40, "ts1_18"}
+    }
+    
+file pr4000chan.template
+    {
+    pattern { device               ,  port   , channel }
+            { ${domain}-VA-GAUGE-41, "ts1_18", 1       }
+            { ${domain}-VA-GAUGE-42, "ts1_18", 2       }
+    }
+
+
+The pr4000.edl synoptic requires the PV names of the controller and of the gauges associated with each channel.
+
+e.g.: edm -eolc -x -m "device=LA02R-VA-GCTLR-40 ch1pv=LA02R-VA-GAUGE-41 ch2pv=LA02R-VA-GAUGE-42" pr4000.edl&
+
+
+    
