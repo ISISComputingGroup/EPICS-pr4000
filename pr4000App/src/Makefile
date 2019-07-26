@@ -6,7 +6,7 @@ include $(TOP)/configure/CONFIG
 # Build an Diamond Support Module
 # -------------------------------
 
-LIBRARY_IOC += pr4000
+PROD_IOC += pr4000
 
 # xxxRecord.dbd will be installed into <top>/dbd
 DBD += pr4000.dbd
