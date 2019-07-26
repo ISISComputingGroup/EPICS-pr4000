@@ -200,8 +200,3 @@ record(mbbo, "$(device):DEFAULTMODE_SET")
     field(ONVL, "1")
     field(ONST, "FLOW")
     }
-    
-
-
-
-    
