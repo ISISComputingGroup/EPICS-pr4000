@@ -1,17 +1,10 @@
-# pr4000.template
-#% macro, __doc__, Template database for a PR4000 Baratron gauge controller
-# Ian Gillingham - December 2014
-#
-# substitutions:
-#% macro, device, Device name
-#% macro, port,   Asyn Port name, e.g. ty_40_0
 ################################################################################
 # Error code
 # Raw code from controller divided by ten
 # 010 = Syntax error
 # 020 = Command failure
 #
-#record(mbbi, "$(device):ERR")
+#record(mbbi, "$(P)ERR")
 #{
 #    field(DESC, "Error code")
 #    field(DTYP, "stream")
@@ -23,10 +16,10 @@
 # The :DISA record is essentially a development
 # tool and not intended for use in the field.
 #
-record(bi, "$(device):DISA")
+record(bi, "$(P)DISABLE")
     {
     field(DESC, "Channel Disable")
-    field(VAL,  "0")
+    field(VAL,  "$(DISABLE)")
     field(ZNAM, "ENABLE")
     field(ONAM, "DISABLE")
     field(PINI, "YES")
@@ -38,147 +31,147 @@ record(bi, "$(device):DISA")
 #
 #% archiver 10 Monitor
 #% controldesk Controller Version readback
-record(stringin, "$(device):ID")
+record(stringin, "$(P)ID")
 {
     field(DESC, "Controller Version")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol id() $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol id() $(PORT)")
+    field(SDIS, "$(P)DISABLE")
     field(SCAN, "5 second")
 }
 
-record(stringin, "$(device):DEBUG")
+record(stringin, "$(P)DEBUG")
 {
     field(DESC, "Generic command")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol debug() $(port)")
+    field(INP,  "@pr4000.protocol debug() $(PORT)")
     field(SCAN, "Passive")
 }
 
-record(stringout, "$(device):DISPTEXTOUT")
+record(stringout, "$(P)DISPTEXTOUT")
     {
     field(DESC, "Display Text")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol dt_set() $(port)")
+    field(OUT,  "@pr4000.protocol dt_set() $(PORT)")
     }
 
-record(stringin, "$(device):DISPTEXT")
+record(stringin, "$(P)DISPTEXT")
     {
     field(DESC, "Display Text")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol dt() $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol dt() $(PORT)")
+    field(SDIS, "$(P)DISABLE")
     field(SCAN, "5 second")
     }
 
-record(mbbi, "$(device):REMOTEMODE")
+record(mbbi, "$(P)REMOTEMODE")
     {
     field(DESC, "Remote Mode")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol remotemode() $(port)")
+    field(INP,  "@pr4000.protocol remotemode() $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "OFF")
     field(ONVL, "1")
     field(ONST, "ON")
-    field(SDIS, "$(device):DISA")
+    field(SDIS, "$(P)DISABLE")
     field(SCAN, "2 second")
     }
 
-record(mbbo, "$(device):REMOTEMODE_SET")
+record(mbbo, "$(P)REMOTEMODE:SP")
     {
     field(DESC, "Remote Mode Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol remotemode_set() $(port)")
+    field(OUT,  "@pr4000.protocol remotemode_set() $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "OFF")
     field(ONVL, "1")
     field(ONST, "ON")
     }
     
-record(mbbiDirect, "$(device):BITSSTATUS")
+record(mbbiDirect, "$(P)BITSSTATUS")
     {
-    field(SDIS, "$(device):DISA")
+    field(SDIS, "$(P)DISABLE")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol status() $(port)")
+    field(INP,  "@pr4000.protocol status() $(PORT)")
     field(NOBT, "8")
     }
-record(bi, "$(device):STCOMERR")
+record(bi, "$(P)STCOMERR")
     {
     field(DESC, "Controller Comm Error")
-    field(INP,  "$(device):BITSSTATUS.B0 CP MS")
+    field(INP,  "$(P)BITSSTATUS.B0 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     }
-record(bi, "$(device):STURANGEAIN0")
+record(bi, "$(P)STURANGEAIN0")
     {
     field(DESC, "Controller AIN0 underrange")
-    field(INP,  "$(device):BITSSTATUS.B1 CP MS")
+    field(INP,  "$(P)BITSSTATUS.B1 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     }
 
-record(bi, "$(device):STORANGEAIN0")
+record(bi, "$(P)STORANGEAIN0")
     {
     field(DESC, "Controller AIN0 overrange")
-    field(INP,  "$(device):BITSSTATUS.B2 CP MS")
+    field(INP,  "$(P)BITSSTATUS.B2 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     }
 
-record(bi, "$(device):STURANGEAIN1")
+record(bi, "$(P)STURANGEAIN1")
     {
     field(DESC, "Controller AIN1 underrange")
-    field(INP,  "$(device):BITSSTATUS.B3 CP MS")
+    field(INP,  "$(P)BITSSTATUS.B3 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     }
-record(bi, "$(device):STORANGEAIN1")
+record(bi, "$(P)STORANGEAIN1")
     {
     field(DESC, "Controller AIN1 overrange")
-    field(INP,  "$(device):BITSSTATUS.B4 CP MS")
+    field(INP,  "$(P)BITSSTATUS.B4 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     }
-record(bi, "$(device):STRELAY0")
+record(bi, "$(P)STRELAY0")
     {
     field(DESC, "Relay 0")
-    field(INP,  "$(device):BITSSTATUS.B5 CP MS")
+    field(INP,  "$(P)BITSSTATUS.B5 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     }
-record(bi, "$(device):STRELAY1")
+record(bi, "$(P)STRELAY1")
     {
     field(DESC, "Relay 1")
-    field(INP,  "$(device):BITSSTATUS.B6 CP MS")
+    field(INP,  "$(P)BITSSTATUS.B6 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     }
-record(bi, "$(device):STPARCHANGED")
+record(bi, "$(P)STPARCHANGED")
     {
     field(DESC, "Param changed by user")
-    field(INP,  "$(device):BITSSTATUS.B7 CP MS")
+    field(INP,  "$(P)BITSSTATUS.B7 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
     }
 
-record(waveform, "$(device):RANGENAMES")
+record(waveform, "$(P)RANGENAMES")
     {
     field(DESC, "Range names array")
     field(DTYP, "Soft Channel")
@@ -188,11 +181,11 @@ record(waveform, "$(device):RANGENAMES")
     field(PINI, "YES")
     }
 
-record(mbbo, "$(device):DEFAULTMODE_SET")
+record(mbbo, "$(P)DEFAULTMODE:SP")
     {
     field(DESC, "Default Mode Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol defaultmode_set() $(port)")
+    field(OUT,  "@pr4000.protocol defaultmode_set() $(PORT)")
     field(DOL,  "0")
     field(PINI, "YES")
     field(ZRVL, "0")

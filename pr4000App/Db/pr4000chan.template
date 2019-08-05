@@ -1,30 +1,7 @@
-# pr4000chan.template
-#% macro, __doc__, Template database for a PR4000 Baratron gauge controller channel
-# Ian Gillingham - December 2014
-#
-# substitutions:
-#% macro, device, Device name
-#% macro, port,   Asyn Port name, e.g. ty_40_0
-#% macro, channel, Channel number
-#
-# Instantiate one of these for each channel (i.e. 2 off)
-# e.g:
-# file pr4000chan.template
-#     {
-#     pattern { device               ,  port   , channel }
-#             { ${domain}-VA-GAUGE-01, "ts1_18", 1       }
-#             { ${domain}-VA-GAUGE-02, "ts1_18", 2       }
-#     }
-#
-
-
-# The :DISA record is essentially a development
-# tool and not intended for use in the field.
-#
-record(bi, "$(device):DISA")
+record(bi, "$(P)CH$(CHAN):DISABLE")
     {
     field(DESC, "Channel Disable")
-    field(VAL,  "0")
+    field(VAL,  "$(DISABLE)")
     field(ZNAM, "ENABLE")
     field(ONAM, "DISABLE")
     field(PINI,  "YES")
@@ -34,214 +11,214 @@ record(bi, "$(device):DISA")
 #  Actual value % of FS formatted in selected range
 #  -005.00 - 110.00
 #
-record(ai, "$(device):AV")
+record(ai, "$(P)CH$(CHAN):VAL")
 {
-    field(DESC, "Actual Value Readback")
+    field(DESC, "Actual value readback")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol av($(channel)) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol av($(CHAN)) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(PREC, "2")
 }
     
-record(ao, "$(device):SPSET")
+record(ao, "$(P)CH$(CHAN):VAL:SP")
     {
-    field(DESC, "Setpoint Set")
+    field(DESC, "Value setpoint")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol sp_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol sp_set($(CHAN)) $(PORT)")
     }
 
-record(ai, "$(device):SP")
+record(ai, "$(P)CH$(CHAN):VAL:SP:RBV")
     {
-    field(DESC, "Setpoint")
+    field(DESC, "Value setpoint readback")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol sp($(channel)) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol sp($(CHAN)) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
 
-record(ai, "$(device):EXTIN")
+record(ai, "$(P)CH$(CHAN):EXTIN")
     {
     field(DESC, "External Input")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol extinp($(channel)) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol extinp($(CHAN)) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
 
 
-record(mbbi, "$(device):VALVE")
+record(mbbi, "$(P)CH$(CHAN):VALVE")
     {
     field(DESC, "Valve status")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol valve($(channel)) $(port)")
+    field(INP,  "@pr4000.protocol valve($(CHAN)) $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "OFF")
     field(ONVL, "1")
     field(ONST, "ON")
-    field(SDIS, "$(device):DISA")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "2 second")
     }
 
-record(mbbo, "$(device):VALVE_SET")
+record(mbbo, "$(P)CH$(CHAN):VALVE:SP")
     {
     field(DESC, "Valve Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol valve_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol valve_set($(CHAN)) $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "OFF")
     field(ONVL, "1")
     field(ONST, "ON")
     }
     
-record(mbbi, "$(device):RELAY")
+record(mbbi, "$(P)CH$(CHAN):RELAY")
     {
     field(DESC, "Relay status")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol relay($(channel)) $(port)")
+    field(INP,  "@pr4000.protocol relay($(CHAN)) $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "OFF")
     field(ONVL, "1")
     field(ONST, "ON")
-    field(SDIS, "$(device):DISA")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "2 second")
     }
 
-record(mbbo, "$(device):RELAYSET")
+record(mbbo, "$(P)CH$(CHAN):RELAY:SP")
     {
     field(DESC, "Relay Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol relay_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol relay_set($(CHAN)) $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "OFF")
     field(ONVL, "1")
     field(ONST, "ON")
     }
     
-record(ao, "$(device):GAINSET")
+record(ao, "$(P)CH$(CHAN):GAIN:SP")
     {
     field(DESC, "Gain Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol gain_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol gain_set($(CHAN)) $(PORT)")
     }
 
-record(ai, "$(device):GAIN")
+record(ai, "$(P)CH$(CHAN):GAIN")
     {
     field(DESC, "Gain")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol gain($(channel)) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol gain($(CHAN)) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
 
-record(ao, "$(device):OFFSETSET")
+record(ao, "$(P)CH$(CHAN):OFFSET:SP")
     {
     field(DESC, "Offset Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol offset_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol offset_set($(CHAN)) $(PORT)")
     }
 
-record(ai, "$(device):OFFSET")
+record(ai, "$(P)CH$(CHAN):OFFSET")
     {
     field(DESC, "Offset")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol offset($(channel)) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol offset($(CHAN)) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
 
-record(ao, "$(device):RTDOFFSETSET")
+record(ao, "$(P)CH$(CHAN):RTDOFFSET:SP")
     {
     field(DESC, "RTD Offset Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol rtdoffset_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol rtdoffset_set($(CHAN)) $(PORT)")
     }
 
-record(ai, "$(device):RTDOFFSET")
+record(ai, "$(P)CH$(CHAN):RTDOFFSET")
     {
     field(DESC, "RTD Offset")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol rtdoffset($(channel)) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol rtdoffset($(CHAN)) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
 
-record(ao, "$(device):AUTOZERO")
+record(ao, "$(P)CH$(CHAN):AUTOZERO")
     {
     field(DESC, "Autozero")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol autozero($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol autozero($(CHAN)) $(PORT)")
     }
 
-record(ao, "$(device):INPRANGESET")
+record(ao, "$(P)CH$(CHAN):INP:RANGE:SP")
     {
     field(DESC, "Input Range Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol inputrange_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol inputrange_set($(CHAN)) $(PORT)")
     }
 
-record(ai, "$(device):INPUTRANGE")
+record(ai, "$(P)CH$(CHAN):INP:RANGE")
     {
     field(DESC, "Input Range")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol inputrange($(channel)) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol inputrange($(CHAN)) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
 
-record(ao, "$(device):OUTPRANGESET")
+record(ao, "$(P)CH$(CHAN):OUTP:RANGE:SP")
     {
     field(DESC, "Output Range Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol outputrange_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol outputrange_set($(CHAN)) $(PORT)")
     }
 
-record(ai, "$(device):OUTPUTRANGE")
+record(ai, "$(P)CH$(CHAN):OUTP:RANGE")
     {
     field(DESC, "Output Range")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol outputrange($(channel)) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol outputrange($(CHAN)) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
 
-record(ai, "$(device):EXTINPUTRANGE")
+record(ai, "$(P)CH$(CHAN):EXTINP:RANGE")
     {
     field(DESC, "External Input Range")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol extinputrange($(channel)) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol extinputrange($(CHAN)) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
 
-record(ao, "$(device):EXTINPRANGESET")
+record(ao, "$(P)CH$(CHAN):EXTINP:RANGE:SP")
     {
     field(DESC, "External Input Range Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol extinputrange_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol extinputrange_set($(CHAN)) $(PORT)")
     }
 
-record(ao, "$(device):EXTOUTPRANGESET")
+record(ao, "$(P)CH$(CHAN):EXTOUTP:RANGE:SP")
     {
     field(DESC, "External Output Range Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol extoutputrange_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol extoutputrange_set($(CHAN)) $(PORT)")
     }
 
-record(ai, "$(device):EXTOUTPUTRANGE")
+record(ai, "$(P)CH$(CHAN):EXTOUTP:RANGE")
     {
     field(DESC, "External Output Range")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol extoutputrange($(channel)) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol extoutputrange($(CHAN)) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
 
-record(mbbi, "$(device):SIGNALMODE")
+record(mbbi, "$(P)CH$(CHAN):SIGNALMODE")
     {
     field(DESC, "Signal Mode")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol signalmode($(channel)) $(port)")
+    field(INP,  "@pr4000.protocol signalmode($(CHAN)) $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "METER")
     field(ONVL, "1")
@@ -254,15 +231,15 @@ record(mbbi, "$(device):SIGNALMODE")
     field(FRST, "SLAVE")
     field(FVVL, "5")
     field(FVST, "RTD")
-    field(SDIS, "$(device):DISA")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "2 second")
     }
 
-record(mbbo, "$(device):SIGNALMODESET")
+record(mbbo, "$(P)CH$(CHAN):SIGNALMODE:SP")
     {
     field(DESC, "Signal Mode Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol signalmode_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol signalmode_set($(CHAN)) $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "METER")
     field(ONVL, "1")
@@ -275,72 +252,70 @@ record(mbbo, "$(device):SIGNALMODESET")
     field(FRST, "SLAVE")
     field(FVVL, "5")
     field(FVST, "RTD")
-    field(SDIS, "$(device):DISA")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "2 second")
     }
 
-record(ai, "$(device):RANGESET")
+record(ai, "$(P)CH$(CHAN):RANGE:SP")
     {
     field(DESC, "Range Set")
-    field(FLNK, "$(device):RGWRITE")
+    field(FLNK, "$(P)CH$(CHAN):RANGE:_WRITE")
     }
 
-record(ai, "$(device):RANGE")
+record(ai, "$(P)CH$(CHAN):RANGE")
     {
     field(DESC, "Range")
     field(DTYP, "stream")
     field(VAL,  "0")
-    field(INP,  "@pr4000.protocol readrange($(channel),$(device):RANGEUNITS) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol readrange($(CHAN),$(P)CH$(CHAN):RANGEUNITS) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
 
-record(ai, "$(device):RANGEUNITSSET")
+record(ai, "$(P)CH$(CHAN):RANGE:UNITS:SP")
     {
     field(DESC, "Range Units Set")
-    field(DTYP, "Soft Channel")
-    field(PINI, "YES")
     field(INP, "1")
-    field(FLNK, "$(device):RANGESET")
+    field(FLNK, "$(P)CH$(CHAN):RANGE:SP")
     }
 
-record(ai, "$(device):RANGEUNITS")
+record(ai, "$(P)CH$(CHAN):RANGE:UNITS")
     {
     field(DESC, "Range Units")
     field(VAL, "0")
     field(PINI, "YES")
     }
 
-record (calcout, "$(device):RGWRITE") 
+record (calcout, "$(P)CH$(CHAN):RANGE:_WRITE") 
     {
     field (DTYP, "stream")
-    field (INPA, "$(device):RANGESET")
-    field (INPB, "$(device):RANGEUNITSSET")
+    field (INPA, "$(P)CH$(CHAN):RANGE:SP")
+    field (INPB, "$(P)CH$(CHAN):RANGE:UNITS:SP")
     field (CALC, "0")
-    field (OUT, "@pr4000.protocol writerange($(channel)) $(port)")
+    field (OUT, "@pr4000.protocol writerange($(CHAN)) $(PORT)")
     } 
 
-record(ao, "$(device):SCALESET")
+record(ao, "$(P)CH$(CHAN):SCALE:SP")
     {
     field(DESC, "Scale Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol scale_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol scale_set($(CHAN)) $(PORT)")
     }
 
-record(ai, "$(device):SCALE")
+record(ai, "$(P)CH$(CHAN):SCALE")
     {
     field(DESC, "Scale")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol scale($(channel)) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol scale($(CHAN)) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
 
-record(mbbi, "$(device):LIMITMODE")
+record(mbbi, "$(P)CH$(CHAN):LIMITMODE")
     {
     field(DESC, "Limit Mode")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol limitmode($(channel)) $(port)")
+    field(INP,  "@pr4000.protocol limitmode($(CHAN)) $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "SLEEP")
     field(ONVL, "1")
@@ -353,15 +328,15 @@ record(mbbi, "$(device):LIMITMODE")
     field(FRST, "MBAND")
     field(FVVL, "5")
     field(FVST, "RTD")
-    field(SDIS, "$(device):DISA")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "2 second")
     }
 
-record(mbbo, "$(device):LIMITMODESET")
+record(mbbo, "$(P)CH$(CHAN):LIMITMODE:SP")
     {
     field(DESC, "Limit Mode Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol limitmode_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol limitmode_set($(CHAN)) $(PORT)")
     field(ZRVL, "0")
     field(ZRST, "SLEEP")
     field(ONVL, "1")
@@ -374,55 +349,55 @@ record(mbbo, "$(device):LIMITMODESET")
     field(FRST, "MBAND")
     field(FVVL, "5")
     field(FVST, "RTD")
-    field(SDIS, "$(device):DISA")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "2 second")
     }
     
-record(ao, "$(device):UPPERLIMITSET")
+record(ao, "$(P)CH$(CHAN):UPPERLIMIT:SP")
     {
     field(DESC, "Upper Limit Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol upperlimit_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol upperlimit_set($(CHAN)) $(PORT)")
     }
 
-record(ai, "$(device):UPPERLIMIT")
+record(ai, "$(P)CH$(CHAN):UPPERLIMIT")
     {
     field(DESC, "Upper Limit")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol upperlimit($(channel),$(device):LASTERROR) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol upperlimit($(CHAN),$(P)CH$(CHAN):LASTERROR) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
 
-record(ao, "$(device):LOWERLIMITSET")
+record(ao, "$(P)CH$(CHAN):LOWERLIMIT:SP")
     {
     field(DESC, "Lower Limit Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol lowerlimit_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol lowerlimit_set($(CHAN)) $(PORT)")
     }
 
-record(ai, "$(device):LOWERLIMIT")
+record(ai, "$(P)CH$(CHAN):LOWERLIMIT")
     {
     field(DESC, "Lower Limit")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol lowerlimit($(channel),$(device):LASTERROR) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol lowerlimit($(CHAN),$(P)CH$(CHAN):LASTERROR) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
     
-record(stringout, "$(device):FORMULARELAYSET")
+record(stringout, "$(P)CH$(CHAN):FORMULARELAY:SP")
     {
     field(DESC, "Formula Relay Set")
     field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol formularelay_set($(channel)) $(port)")
+    field(OUT,  "@pr4000.protocol formularelay_set($(CHAN)) $(PORT)")
     }
 
-record(stringin, "$(device):FORMULARELAY")
+record(stringin, "$(P)CH$(CHAN):FORMULARELAY")
     {
     field(DESC, "Formula Relay")
     field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol formularelay($(channel)) $(port)")
-    field(SDIS, "$(device):DISA")
+    field(INP,  "@pr4000.protocol formularelay($(CHAN)) $(PORT)")
+    field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     }
     
@@ -431,7 +406,7 @@ record(stringin, "$(device):FORMULARELAY")
 ## Try to work around mbbi limitation of 16 enums
 ## as we need 21 for range units.
 ##
-record(mbbo, "$(device):UNITSLISTA")
+record(mbbo, "$(P)CH$(CHAN):UNITSLISTA")
     {
     field(DESC, "First 16 available units")
     field(DTYP, "Raw Soft Channel")
@@ -470,10 +445,10 @@ record(mbbo, "$(device):UNITSLISTA")
     field(DOL, "1")
     field(PINI, "YES")
     field(PHAS, "2")
-    field(OUT,  "$(device):RANGEUNITSSET")
-    field(FLNK, "$(device):RANGEUNITSSET")
+    field(OUT,  "$(P)CH$(CHAN):RANGE:UNITS:SP")
+    field(FLNK, "$(P)CH$(CHAN):RANGE:UNITS:SP")
     }
-record(mbbo, "$(device):UNITSLISTB")
+record(mbbo, "$(P)CH$(CHAN):UNITSLISTB")
     {
     field(DESC, "Last 4 available units")
     field(DTYP, "Raw Soft Channel")
@@ -490,12 +465,12 @@ record(mbbo, "$(device):UNITSLISTB")
     field(DOL, "0")
     field(PINI, "YES")
     field(PHAS, "1")
-    field(OUT,  "$(device):RANGEUNITSSET")
-    field(FLNK, "$(device):RANGEUNITSSET")
+    field(OUT,  "$(P)CH$(CHAN):RANGE:UNITS:SP")
+    field(FLNK, "$(P)CH$(CHAN):RANGE:UNITS:SP")
     }
 
 
-record(stringin, "$(device):LASTERROR")
+record(stringin, "$(P)CH$(CHAN):LASTERROR")
     {
     field(DESC, "Error Message")
     field(DTYP, "Soft Record")
@@ -506,7 +481,7 @@ record(stringin, "$(device):LASTERROR")
 
 ## Next three records not currently used...
 ##
-record(ai, "$(device):UNITSINDEX")
+record(ai, "$(P)CH$(CHAN):UNITSINDEX")
     {
     field(DESC, "Units index number 0..20")
     field(DTYP, "Soft Channel")
@@ -515,21 +490,21 @@ record(ai, "$(device):UNITSINDEX")
     field(SCAN, "1 second")
     }
     
-record(calc, "$(device):UNITSSELN") 
+record(calc, "$(P)CH$(CHAN):UNITSSELN") 
     {
     field(DESC, "Units list SELN calc")
-    field(INPA, "$(device):UNITSINDEX")
+    field(INPA, "$(P)CH$(CHAN):UNITSINDEX")
     field(CALC, "(A>15)?1:0")
-    field(FLNK, "$(device):UNITSSEL")
+    field(FLNK, "$(P)CH$(CHAN):UNITSSEL")
     }
 
- record(sel, "$(device):UNITSSEL")
+ record(sel, "$(P)CH$(CHAN):UNITSSEL")
     {
     field(DESC, "Select Units List")
     field(SELM, "Specified")
     field(SELN, "0")
-    field(NVL,  "$(device):UNITSSELN")
-    field(INPA, "$(device):UNITSLISTA.RVAL")
-    field(INPB, "$(device):UNITSLISTB.RVAL")
+    field(NVL,  "$(P)CH$(CHAN):UNITSSELN")
+    field(INPA, "$(P)CH$(CHAN):UNITSLISTA.RVAL")
+    field(INPB, "$(P)CH$(CHAN):UNITSLISTB.RVAL")
     }
     
