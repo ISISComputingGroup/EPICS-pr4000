@@ -7,8 +7,8 @@ include $(TOP)/configure/CONFIG
 #  Optimization of db files using dbst (DEFAULT: NO)
 #DB_OPT = YES
 
-DB += pr4000.template
-DB += pr4000chan.template
+DB += pr4000.db
+DB += pr4000chan.db
 
 include $(TOP)/configure/RULES
 #----------------------------------------

@@ -17,13 +17,13 @@
 # tool and not intended for use in the field.
 #
 record(bi, "$(P)DISABLE")
-    {
+{
     field(DESC, "Channel Disable")
     field(VAL,  "$(DISABLE)")
-    field(ZNAM, "ENABLE")
-    field(ONAM, "DISABLE")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
     field(PINI, "YES")
-    }
+}
 
 
 ################################################################################
@@ -49,23 +49,23 @@ record(stringin, "$(P)DEBUG")
 }
 
 record(stringout, "$(P)DISPTEXTOUT")
-    {
+{
     field(DESC, "Display Text")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol dt_set() $(PORT)")
-    }
+}
 
 record(stringin, "$(P)DISPTEXT")
-    {
+{
     field(DESC, "Display Text")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol dt() $(PORT)")
     field(SDIS, "$(P)DISABLE")
     field(SCAN, "5 second")
-    }
+}
 
 record(mbbi, "$(P)REMOTEMODE")
-    {
+{
     field(DESC, "Remote Mode")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol remotemode() $(PORT)")
@@ -75,10 +75,10 @@ record(mbbi, "$(P)REMOTEMODE")
     field(ONST, "ON")
     field(SDIS, "$(P)DISABLE")
     field(SCAN, "2 second")
-    }
+}
 
 record(mbbo, "$(P)REMOTEMODE:SP")
-    {
+{
     field(DESC, "Remote Mode Set")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol remotemode_set() $(PORT)")
@@ -86,110 +86,97 @@ record(mbbo, "$(P)REMOTEMODE:SP")
     field(ZRST, "OFF")
     field(ONVL, "1")
     field(ONST, "ON")
-    }
+}
     
 record(mbbiDirect, "$(P)BITSSTATUS")
-    {
+{
     field(SDIS, "$(P)DISABLE")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol status() $(PORT)")
     field(NOBT, "8")
-    }
+}
 record(bi, "$(P)STCOMERR")
-    {
+{
     field(DESC, "Controller Comm Error")
     field(INP,  "$(P)BITSSTATUS.B0 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-    }
+}
 record(bi, "$(P)STURANGEAIN0")
-    {
+{
     field(DESC, "Controller AIN0 underrange")
     field(INP,  "$(P)BITSSTATUS.B1 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-    }
+}
 
 record(bi, "$(P)STORANGEAIN0")
-    {
+{
     field(DESC, "Controller AIN0 overrange")
     field(INP,  "$(P)BITSSTATUS.B2 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-    }
+}
 
 record(bi, "$(P)STURANGEAIN1")
-    {
+{
     field(DESC, "Controller AIN1 underrange")
     field(INP,  "$(P)BITSSTATUS.B3 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-    }
+}
 record(bi, "$(P)STORANGEAIN1")
-    {
+{
     field(DESC, "Controller AIN1 overrange")
     field(INP,  "$(P)BITSSTATUS.B4 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-    }
+}
 record(bi, "$(P)STRELAY0")
-    {
+{
     field(DESC, "Relay 0")
     field(INP,  "$(P)BITSSTATUS.B5 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-    }
+}
 record(bi, "$(P)STRELAY1")
-    {
+{
     field(DESC, "Relay 1")
     field(INP,  "$(P)BITSSTATUS.B6 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-    }
+}
 record(bi, "$(P)STPARCHANGED")
-    {
+{
     field(DESC, "Param changed by user")
     field(INP,  "$(P)BITSSTATUS.B7 CP MS")
     field(ZSV,  "NO_ALARM")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-    }
+}
 
 record(waveform, "$(P)RANGENAMES")
-    {
+{
     field(DESC, "Range names array")
     field(DTYP, "Soft Channel")
     field(FTVL, "STRING")
     field(NELM, "20")
     #field(INP, "11 22 33 44")
     field(PINI, "YES")
-    }
-
-record(mbbo, "$(P)DEFAULTMODE:SP")
-    {
-    field(DESC, "Default Mode Set")
-    field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol defaultmode_set() $(PORT)")
-    field(DOL,  "0")
-    field(PINI, "YES")
-    field(ZRVL, "0")
-    field(ZRST, "PRESSURE")
-    field(ONVL, "1")
-    field(ONST, "FLOW")
-    }
+}
