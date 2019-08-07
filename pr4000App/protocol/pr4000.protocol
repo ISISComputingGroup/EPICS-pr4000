@@ -13,12 +13,6 @@ readtimeout  = 2000;
 extrainput   = Ignore;
 Separator    = ",";
 
-# Send an initial dummy command to clear out any garbage the controller has already received.
-# This makes it more likely that the first command sent is received OK.
-# NB we dont wait for a response to the dummy command because if it didnt arrive (e.g. rs232 unplugged) then
-# streams would issue a replyTimeout exception and stop the ioc.
-@init{out "RE"; in "";}
-
 id              { out "?ID"; in "%s";}
 av              { out "AV\$1"; in "%f";}
 dt              { out "?DT"; in "%s%*s";}

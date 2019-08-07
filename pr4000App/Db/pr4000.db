@@ -1,21 +1,12 @@
-################################################################################
-# Error code
-# Raw code from controller divided by ten
-# 010 = Syntax error
-# 020 = Command failure
-#
-#record(mbbi, "$(P)ERR")
-#{
-#    field(DESC, "Error code")
-#    field(DTYP, "stream")
-#    field(ZRST, "OK")
-#    field(ONST, "SYNTAX")
-#    field(TWST, "CMDFAIL")
-#}
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
 
-# The :DISA record is essentially a development
-# tool and not intended for use in the field.
-#
 record(bi, "$(P)DISABLE")
 {
     field(DESC, "Channel Disable")
@@ -38,6 +29,8 @@ record(stringin, "$(P)ID")
     field(INP,  "@pr4000.protocol id() $(PORT)")
     field(SDIS, "$(P)DISABLE")
     field(SCAN, "5 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ID")
 }
 
 record(stringin, "$(P)DEBUG")
@@ -46,6 +39,9 @@ record(stringin, "$(P)DEBUG")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol debug() $(PORT)")
     field(SCAN, "Passive")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DEBUG")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(stringout, "$(P)DISPTEXTOUT")
@@ -53,6 +49,9 @@ record(stringout, "$(P)DISPTEXTOUT")
     field(DESC, "Display Text")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol dt_set() $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DISPTEXTOUT")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(stringin, "$(P)DISPTEXT")
@@ -62,6 +61,8 @@ record(stringin, "$(P)DISPTEXT")
     field(INP,  "@pr4000.protocol dt() $(PORT)")
     field(SDIS, "$(P)DISABLE")
     field(SCAN, "5 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:DISPTEXT")
 }
 
 record(mbbi, "$(P)REMOTEMODE")
@@ -75,6 +76,8 @@ record(mbbi, "$(P)REMOTEMODE")
     field(ONST, "ON")
     field(SDIS, "$(P)DISABLE")
     field(SCAN, "2 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:REMOTEMODE")
 }
 
 record(mbbo, "$(P)REMOTEMODE:SP")
@@ -86,6 +89,9 @@ record(mbbo, "$(P)REMOTEMODE:SP")
     field(ZRST, "OFF")
     field(ONVL, "1")
     field(ONST, "ON")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:REMOTEMODE:SP")
+    field(SDIS, "$(P)DISABLE")
 }
     
 record(mbbiDirect, "$(P)BITSSTATUS")
@@ -180,3 +186,38 @@ record(waveform, "$(P)RANGENAMES")
     #field(INP, "11 22 33 44")
     field(PINI, "YES")
 }
+
+### SIMULATION RECORDS ###
+
+record(stringout,"$(P)SIM:DEBUG")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringout,"$(P)SIM:DISPTEXTOUT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringout,"$(P)SIM:DISPTEXT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbo,"$(P)SIM:REMOTEMODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:REMOTEMODE","$(P)SIM:REMOTEMODE:SP")
+
+record(stringout,"$(P)SIM:ID")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
