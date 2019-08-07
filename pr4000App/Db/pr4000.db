@@ -28,7 +28,7 @@ record(stringin, "$(P)ID")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol id() $(PORT)")
     field(SDIS, "$(P)DISABLE")
-    field(SCAN, "5 second")
+    field(SCAN, "10 second")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:ID")
 }
@@ -44,36 +44,16 @@ record(stringin, "$(P)DEBUG")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(stringout, "$(P)DISPTEXTOUT")
-{
-    field(DESC, "Display Text")
-    field(DTYP, "stream")
-    field(OUT,  "@pr4000.protocol dt_set() $(PORT)")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:DISPTEXTOUT")
-    field(SDIS, "$(P)DISABLE")
-}
-
-record(stringin, "$(P)DISPTEXT")
-{
-    field(DESC, "Display Text")
-    field(DTYP, "stream")
-    field(INP,  "@pr4000.protocol dt() $(PORT)")
-    field(SDIS, "$(P)DISABLE")
-    field(SCAN, "5 second")
-    field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:DISPTEXT")
-}
-
 record(mbbi, "$(P)REMOTEMODE")
 {
     field(DESC, "Remote Mode")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol remotemode() $(PORT)")
     field(ZRVL, "0")
-    field(ZRST, "OFF")
+    field(ZRST, "LOCAL")
+    field(ZRSV, "MAJOR")
     field(ONVL, "1")
-    field(ONST, "ON")
+    field(ONST, "REMOTE")
     field(SDIS, "$(P)DISABLE")
     field(SCAN, "2 second")
     field(SIML, "$(P)SIM")
@@ -86,9 +66,9 @@ record(mbbo, "$(P)REMOTEMODE:SP")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol remotemode_set() $(PORT)")
     field(ZRVL, "0")
-    field(ZRST, "OFF")
+    field(ZRST, "LOCAL")
     field(ONVL, "1")
-    field(ONST, "ON")
+    field(ONST, "REMOTE")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:REMOTEMODE:SP")
     field(SDIS, "$(P)DISABLE")
@@ -107,9 +87,9 @@ record(bi, "$(P)STCOMERR")
     field(DESC, "Controller Comm Error")
     field(INP,  "$(P)BITSSTATUS.B0 CP MS")
     field(ZSV,  "NO_ALARM")
-    field(OSV,  "MINOR")
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
+    field(OSV,  "MAJOR")
+    field(ZNAM, "NO_ERROR")
+    field(ONAM, "ERROR")
 }
 record(bi, "$(P)STURANGEAIN0")
 {
@@ -175,16 +155,6 @@ record(bi, "$(P)STPARCHANGED")
     field(OSV,  "MINOR")
     field(ZNAM, "OFF")
     field(ONAM, "ON")
-}
-
-record(waveform, "$(P)RANGENAMES")
-{
-    field(DESC, "Range names array")
-    field(DTYP, "Soft Channel")
-    field(FTVL, "STRING")
-    field(NELM, "20")
-    #field(INP, "11 22 33 44")
-    field(PINI, "YES")
 }
 
 ### SIMULATION RECORDS ###

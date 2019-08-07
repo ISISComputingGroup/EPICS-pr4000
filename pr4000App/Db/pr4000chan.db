@@ -387,12 +387,17 @@ record(aSub, "$(P)CH$(CHAN):RANGE:UNITS:SP:_CALC")
     field(FTA, "STRING")
     field(NOA, "1")
       
-    field(OUTA, "$(P)CH$(CHAN):RANGE:_WRITE.B PP")
+    field(OUTA, "$(P)CH$(CHAN):RANGE:UNITS:SP:_RAW PP")
     field(FTVA, "LONG")
     field(NOVA, "1")
 }
 
-record(longin, "$(P)CH$(CHAN):RANGE:UNITS:_RAW"){}  # Updated from $(P)CH$(CHAN):RANGE above.
+record(longin, "$(P)CH$(CHAN):RANGE:UNITS:_RAW") {}
+
+record(longin, "$(P)CH$(CHAN):RANGE:UNITS:SP:_RAW") 
+{
+    field(FLNK, "$(P)CH$(CHAN):RANGE:_WRITE")
+}
 
 record(aSub, "$(P)CH$(CHAN):RANGE:UNITS:_CALC") 
 {
@@ -415,7 +420,7 @@ record (calcout, "$(P)CH$(CHAN):RANGE:_WRITE")
 {
     field (DTYP, "stream")
     field (INPA, "$(P)CH$(CHAN):RANGE:SP")
-    field (INPB, "$(P)CH$(CHAN):RANGE:UNITS:SP")
+    field (INPB, "$(P)CH$(CHAN):RANGE:UNITS:SP:_RAW")
     field (CALC, "0")
     field (OUT, "@pr4000.protocol writerange($(CHAN)) $(PORT)")
 } 
