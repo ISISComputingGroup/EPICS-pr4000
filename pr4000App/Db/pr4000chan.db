@@ -28,8 +28,11 @@ record(ai, "$(P)CH$(CHAN):VAL")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "2 second")
     field(PREC, "2")
+    field(EGU, "")  # Units are variable
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:VAL")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
 }
     
 record(ao, "$(P)CH$(CHAN):VAL:SP")
@@ -38,10 +41,12 @@ record(ao, "$(P)CH$(CHAN):VAL:SP")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol sp_set($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "")  # Units are variable
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:VAL:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):VAL:SP:RBV")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):VAL:SP:RBV")
@@ -50,10 +55,12 @@ record(ai, "$(P)CH$(CHAN):VAL:SP:RBV")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol sp($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "")  # Units are variable
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:VAL:SP:RBV")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):EXTIN")
@@ -62,10 +69,12 @@ record(ai, "$(P)CH$(CHAN):EXTIN")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol extinp($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "%")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:EXTIN")
+    info(archive, "VAL")
 }
 
 
@@ -82,6 +91,7 @@ record(mbbi, "$(P)CH$(CHAN):VALVE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:VALVE")
+    info(archive, "VAL")
 }
 
 record(mbbo, "$(P)CH$(CHAN):VALVE:SP")
@@ -97,6 +107,7 @@ record(mbbo, "$(P)CH$(CHAN):VALVE:SP")
     field(SIOL, "$(P)CH$(CHAN):SIM:VALVE:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):VALVE")
+    info(archive, "VAL")
 }
     
 record(mbbi, "$(P)CH$(CHAN):RELAY")
@@ -112,6 +123,7 @@ record(mbbi, "$(P)CH$(CHAN):RELAY")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:RELAY")
+    info(archive, "VAL")
 }
 
 record(mbbo, "$(P)CH$(CHAN):RELAY:SP")
@@ -127,6 +139,7 @@ record(mbbo, "$(P)CH$(CHAN):RELAY:SP")
     field(SIOL, "$(P)CH$(CHAN):SIM:RELAY:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):RELAY")
+    info(archive, "VAL")
 }
     
 record(ao, "$(P)CH$(CHAN):GAIN:SP")
@@ -135,10 +148,12 @@ record(ao, "$(P)CH$(CHAN):GAIN:SP")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol gain_set($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:GAIN:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):GAIN")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):GAIN")
@@ -147,10 +162,12 @@ record(ai, "$(P)CH$(CHAN):GAIN")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol gain($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:GAIN")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)CH$(CHAN):OFFSET:SP")
@@ -159,10 +176,12 @@ record(ao, "$(P)CH$(CHAN):OFFSET:SP")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol offset_set($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:OFFSET:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):OFFSET")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):OFFSET")
@@ -171,10 +190,12 @@ record(ai, "$(P)CH$(CHAN):OFFSET")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol offset($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:OFFSET")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)CH$(CHAN):RTDOFFSET:SP")
@@ -183,10 +204,12 @@ record(ao, "$(P)CH$(CHAN):RTDOFFSET:SP")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol rtdoffset_set($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:RTDOFFSET:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):RTDOFFSET")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):RTDOFFSET")
@@ -195,10 +218,12 @@ record(ai, "$(P)CH$(CHAN):RTDOFFSET")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol rtdoffset($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:RTDOFFSET")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)CH$(CHAN):AUTOZERO")
@@ -217,10 +242,12 @@ record(ao, "$(P)CH$(CHAN):INP:RANGE:SP")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol inputrange_set($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "V")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:INP:RANGE:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):INP:RANGE")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):INP:RANGE")
@@ -229,10 +256,12 @@ record(ai, "$(P)CH$(CHAN):INP:RANGE")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol inputrange($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "V")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:INP:RANGE")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)CH$(CHAN):OUTP:RANGE:SP")
@@ -241,10 +270,12 @@ record(ao, "$(P)CH$(CHAN):OUTP:RANGE:SP")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol outputrange_set($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "V")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:OUTP:RANGE:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):OUTP:RANGE")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):OUTP:RANGE")
@@ -253,10 +284,12 @@ record(ai, "$(P)CH$(CHAN):OUTP:RANGE")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol outputrange($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "V")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:OUTP:RANGE")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):EXTINP:RANGE")
@@ -265,10 +298,12 @@ record(ai, "$(P)CH$(CHAN):EXTINP:RANGE")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol extinputrange($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "V")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:EXTINP:RANGE")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)CH$(CHAN):EXTINP:RANGE:SP")
@@ -277,10 +312,12 @@ record(ao, "$(P)CH$(CHAN):EXTINP:RANGE:SP")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol extinputrange_set($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "V")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:EXTINP:RANGE:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):EXTINP:RANGE")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)CH$(CHAN):EXTOUTP:RANGE:SP")
@@ -289,10 +326,12 @@ record(ao, "$(P)CH$(CHAN):EXTOUTP:RANGE:SP")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol extoutputrange_set($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "V")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:EXTOUTP:RANGE:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):EXTOUTP:RANGE")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):EXTOUTP:RANGE")
@@ -301,10 +340,12 @@ record(ai, "$(P)CH$(CHAN):EXTOUTP:RANGE")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol extoutputrange($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "V")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:EXTOUTP:RANGE")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)CH$(CHAN):SIGNALMODE")
@@ -328,6 +369,7 @@ record(mbbi, "$(P)CH$(CHAN):SIGNALMODE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:SIGNALMODE")
+    info(archive, "VAL")
 }
 
 record(mbbo, "$(P)CH$(CHAN):SIGNALMODE:SP")
@@ -352,6 +394,7 @@ record(mbbo, "$(P)CH$(CHAN):SIGNALMODE:SP")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:SIGNALMODE:SP")
     field(FLNK, "$(P)CH$(CHAN):SIGNALMODE")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)CH$(CHAN):RANGE:SP")
@@ -359,6 +402,8 @@ record(ao, "$(P)CH$(CHAN):RANGE:SP")
     field(DESC, "Range Set")
     field(FLNK, "$(P)CH$(CHAN):RANGE:_WRITE")
     field(PREC, "2")
+    field(EGU, "") # variable units
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):RANGE")
@@ -368,16 +413,19 @@ record(ai, "$(P)CH$(CHAN):RANGE")
     field(VAL,  "0")
     field(INP,  "@pr4000.protocol readrange($(CHAN),$(P)CH$(CHAN):RANGE:UNITS:_RAW) $(PORT)")
     field(PREC, "2")
+    field(EGU, "") # variable units
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:RANGE")
+    info(archive, "VAL")
 }
 
 record(stringout, "$(P)CH$(CHAN):RANGE:UNITS:SP")
 {
     field(DESC, "Range Units Set")
     field(FLNK, "$(P)CH$(CHAN):RANGE:UNITS:SP:_CALC")
+    info(archive, "VAL")
 }
 
 record(aSub, "$(P)CH$(CHAN):RANGE:UNITS:SP:_CALC") 
@@ -390,13 +438,18 @@ record(aSub, "$(P)CH$(CHAN):RANGE:UNITS:SP:_CALC")
     field(OUTA, "$(P)CH$(CHAN):RANGE:UNITS:SP:_RAW PP")
     field(FTVA, "LONG")
     field(NOVA, "1")
+    
+    info(archive, "A VALA")
 }
 
-record(longin, "$(P)CH$(CHAN):RANGE:UNITS:_RAW") {}
+record(longin, "$(P)CH$(CHAN):RANGE:UNITS:_RAW") {
+    info(archive, "VAL")
+}
 
 record(longin, "$(P)CH$(CHAN):RANGE:UNITS:SP:_RAW") 
 {
     field(FLNK, "$(P)CH$(CHAN):RANGE:_WRITE")
+    info(archive, "VAL")
 }
 
 record(aSub, "$(P)CH$(CHAN):RANGE:UNITS:_CALC") 
@@ -409,11 +462,14 @@ record(aSub, "$(P)CH$(CHAN):RANGE:UNITS:_CALC")
     field(OUTA, "$(P)CH$(CHAN):RANGE:UNITS PP")
     field(FTVA, "STRING")
     field(NOVA, "1")
+    
+    info(archive, "A VALA")
 }
 
 record(stringout, "$(P)CH$(CHAN):RANGE:UNITS")
 {
     field(DESC, "Range Units")
+    info(archive, "VAL")
 }
 
 record (calcout, "$(P)CH$(CHAN):RANGE:_WRITE") 
@@ -423,6 +479,8 @@ record (calcout, "$(P)CH$(CHAN):RANGE:_WRITE")
     field (INPB, "$(P)CH$(CHAN):RANGE:UNITS:SP:_RAW")
     field (CALC, "0")
     field (OUT, "@pr4000.protocol writerange($(CHAN)) $(PORT)")
+    
+    info(archive, "A B")
 } 
 
 record(ao, "$(P)CH$(CHAN):SCALE:SP")
@@ -431,10 +489,12 @@ record(ao, "$(P)CH$(CHAN):SCALE:SP")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol scale_set($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "%")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:SCALE:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):SCALE")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):SCALE")
@@ -443,10 +503,12 @@ record(ai, "$(P)CH$(CHAN):SCALE")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol scale($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "%")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:SCALE")
+    info(archive, "VAL")
 }
 
 record(mbbi, "$(P)CH$(CHAN):LIMITMODE")
@@ -470,6 +532,7 @@ record(mbbi, "$(P)CH$(CHAN):LIMITMODE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:LIMITMODE")
+    info(archive, "VAL")
 }
 
 record(mbbo, "$(P)CH$(CHAN):LIMITMODE:SP")
@@ -494,6 +557,7 @@ record(mbbo, "$(P)CH$(CHAN):LIMITMODE:SP")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:LIMITMODE:SP")
     field(FLNK, "$(P)CH$(CHAN):LIMITMODE")
+    info(archive, "VAL")
 }
     
 record(ao, "$(P)CH$(CHAN):UPPERLIMIT:SP")
@@ -502,10 +566,12 @@ record(ao, "$(P)CH$(CHAN):UPPERLIMIT:SP")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol upperlimit_set($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "%")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:UPPERLIMIT:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):UPPERLIMIT")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):UPPERLIMIT")
@@ -514,10 +580,12 @@ record(ai, "$(P)CH$(CHAN):UPPERLIMIT")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol upperlimit($(CHAN),$(P)CH$(CHAN):LASTERROR) $(PORT)")
     field(PREC, "2")
+    field(EGU, "%")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:UPPERLIMIT")
+    info(archive, "VAL")
 }
 
 record(ao, "$(P)CH$(CHAN):LOWERLIMIT:SP")
@@ -526,10 +594,12 @@ record(ao, "$(P)CH$(CHAN):LOWERLIMIT:SP")
     field(DTYP, "stream")
     field(OUT,  "@pr4000.protocol lowerlimit_set($(CHAN)) $(PORT)")
     field(PREC, "2")
+    field(EGU, "%")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:LOWERLIMIT:SP")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(FLNK, "$(P)CH$(CHAN):LOWERLIMIT")
+    info(archive, "VAL")
 }
 
 record(ai, "$(P)CH$(CHAN):LOWERLIMIT")
@@ -538,10 +608,12 @@ record(ai, "$(P)CH$(CHAN):LOWERLIMIT")
     field(DTYP, "stream")
     field(INP,  "@pr4000.protocol lowerlimit($(CHAN),$(P)CH$(CHAN):LASTERROR) $(PORT)")
     field(PREC, "2")
+    field(EGU, "%")
     field(SDIS, "$(P)CH$(CHAN):DISABLE")
     field(SCAN, "5 second")
     field(SIML, "$(P)CH$(CHAN):SIM")
     field(SIOL, "$(P)CH$(CHAN):SIM:LOWERLIMIT")
+    info(archive, "VAL")
 }
     
 record(stringout, "$(P)CH$(CHAN):FORMULARELAY:SP")
@@ -566,118 +638,12 @@ record(stringin, "$(P)CH$(CHAN):FORMULARELAY")
     field(SIOL, "$(P)CH$(CHAN):SIM:FORMULARELAY")
 }
     
-    
-##
-## Try to work around mbbi limitation of 16 enums
-## as we need 21 for range units.
-##
-record(mbbo, "$(P)CH$(CHAN):UNITSLISTA")
-{
-    field(DESC, "First 16 available units")
-    field(DTYP, "Raw Soft Channel")
-    field(ZRVL, "0")
-    field(ZRST, "uBar")
-    field(ONVL, "1")
-    field(ONST, "mBar")
-    field(TWVL, "2")
-    field(TWST, "Bar")
-    field(THVL, "3")
-    field(THST, "mTor")
-    field(FRVL, "4")
-    field(FRST, "Torr")
-    field(FVVL, "5")
-    field(FVST, "kTor")
-    field(SXVL, "6")
-    field(SXST, "Pa")
-    field(SVVL, "7")
-    field(SVST, "kPa")
-    field(EIVL, "8")
-    field(EIST, "mH2O")
-    field(NIVL, "9")
-    field(NIST, "cH2O")
-    field(TEVL, "10")
-    field(TEST, "PSI")
-    field(ELVL, "11")
-    field(ELST, "N/qm")
-    field(TVVL, "12")
-    field(TVST, "SCCM")
-    field(TTVL, "13")
-    field(TTST, "SLM")
-    field(FTVL, "14")
-    field(FTST, "SCM")
-    field(FFVL, "15")
-    field(FFST, "SCFH")
-    field(DOL, "1")
-    field(PINI, "YES")
-    field(PHAS, "2")
-    field(OUT,  "$(P)CH$(CHAN):RANGE:UNITS:SP")
-    field(FLNK, "$(P)CH$(CHAN):RANGE:UNITS:SP")
-    field(SIML, "$(P)CH$(CHAN):SIM")
-    field(SIOL, "$(P)CH$(CHAN):SIM:UNITSLISTA")
-    field(SDIS, "$(P)CH$(CHAN):DISABLE")
-}
-record(mbbo, "$(P)CH$(CHAN):UNITSLISTB")
-{
-    field(DESC, "Last 4 available units")
-    field(DTYP, "Raw Soft Channel")
-    field(ZRVL, "16")
-    field(ZRST, "SCFM")
-    field(ONVL, "17")
-    field(ONST, "mA")
-    field(TWVL, "18")
-    field(TWST, "V")
-    field(THVL, "19")
-    field(THST, "%")
-    field(FRVL, "20")
-    field(FRST, "C")
-    field(DOL, "0")
-    field(PINI, "YES")
-    field(PHAS, "1")
-    field(OUT,  "$(P)CH$(CHAN):RANGE:UNITS:SP")
-    field(FLNK, "$(P)CH$(CHAN):RANGE:UNITS:SP")
-    field(SIML, "$(P)CH$(CHAN):SIM")
-    field(SIOL, "$(P)CH$(CHAN):SIM:UNITSLISTB")
-    field(SDIS, "$(P)CH$(CHAN):DISABLE")
-}
-
-
 record(stringin, "$(P)CH$(CHAN):LASTERROR")
 {
     field(DESC, "Error Message")
     field(INP,  "")
     field(PINI,  "YES")
 }
-    
-
-## Next three records not currently used...
-##
-record(ai, "$(P)CH$(CHAN):UNITSINDEX")
-{
-    field(DESC, "Units index number 0..20")
-    field(DTYP, "Soft Channel")
-    field(INP,  "0")
-    field(PINI, "YES")
-    field(SCAN, "1 second")
-}
-    
-record(calc, "$(P)CH$(CHAN):UNITSSELN") 
-{
-    field(DESC, "Units list SELN calc")
-    field(INPA, "$(P)CH$(CHAN):UNITSINDEX")
-    field(CALC, "(A>15)?1:0")
-    field(FLNK, "$(P)CH$(CHAN):UNITSSEL")
-}
-
- record(sel, "$(P)CH$(CHAN):UNITSSEL")
-{
-    field(DESC, "Select Units List")
-    field(SELM, "Specified")
-    field(SELN, "0")
-    field(NVL,  "$(P)CH$(CHAN):UNITSSELN")
-    field(INPA, "$(P)CH$(CHAN):UNITSLISTA.RVAL")
-    field(INPB, "$(P)CH$(CHAN):UNITSLISTB.RVAL")
-}
-    
 
 ### SIMULATION RECORDS ###
 
