@@ -9,6 +9,7 @@ include $(TOP)/configure/CONFIG
 
 DB += pr4000.db
 DB += pr4000chan.db
+DB += unit_setter.db
 
 include $(TOP)/configure/RULES
 #----------------------------------------
