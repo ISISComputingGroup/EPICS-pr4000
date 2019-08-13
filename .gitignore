@@ -1,7 +1,8 @@
 O.*/
-data/
-db/
-dbd/
+/data/
+/db/
+/dbd/
 *~
 doxygen/
-bin/
+/bin/
+/lib/

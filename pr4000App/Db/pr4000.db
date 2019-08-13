@@ -1,0 +1,192 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bi, "$(P)DISABLE")
+{
+    field(DESC, "Channel Disable")
+    field(VAL,  "$(DISABLE)")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+    field(PINI, "YES")
+}
+
+################################################################################
+# Controller Version
+#
+#% archiver 10 Monitor
+#% controldesk Controller Version readback
+record(stringin, "$(P)ID")
+{
+    field(DESC, "Controller Version")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol id() $(PORT)")
+    field(SDIS, "$(P)DISABLE")
+    field(SCAN, "10 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:ID")
+    info(alarm, "MKSPR4KB")
+}
+
+record(mbbi, "$(P)REMOTEMODE")
+{
+    field(DESC, "Remote Mode")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol remotemode() $(PORT)")
+    field(ZRVL, "0")
+    field(ZRST, "LOCAL")
+    field(ZRSV, "MAJOR")
+    field(ONVL, "1")
+    field(ONST, "REMOTE")
+    field(SDIS, "$(P)DISABLE")
+    field(SCAN, "2 second")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:REMOTEMODE")
+    info(archive, "VAL")
+}
+
+record(mbbo, "$(P)REMOTEMODE:SP")
+{
+    field(DESC, "Remote Mode Set")
+    field(DTYP, "stream")
+    field(OUT,  "@pr4000.protocol remotemode_set() $(PORT)")
+    field(ZRVL, "0")
+    field(ZRST, "LOCAL")
+    field(ONVL, "1")
+    field(ONST, "REMOTE")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:REMOTEMODE:SP")
+    field(SDIS, "$(P)DISABLE")
+    info(archive, "VAL")
+}
+    
+record(mbbiDirect, "$(P)BITSSTATUS")
+{
+    field(SDIS, "$(P)DISABLE")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@pr4000.protocol status() $(PORT)")
+    field(NOBT, "8")
+}
+record(bi, "$(P)STCOMERR")
+{
+    field(DESC, "Controller Comm Error")
+    field(INP,  "$(P)BITSSTATUS.B0 CP MS")
+    field(ZSV,  "NO_ALARM")
+    field(OSV,  "MAJOR")
+    field(ZNAM, "NO_ERROR")
+    field(ONAM, "ERROR")
+    info(archive, "VAL")
+}
+record(bi, "$(P)STURANGEAIN0")
+{
+    field(DESC, "Controller AIN0 underrange")
+    field(INP,  "$(P)BITSSTATUS.B1 CP MS")
+    field(ZSV,  "NO_ALARM")
+    field(OSV,  "MINOR")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)STORANGEAIN0")
+{
+    field(DESC, "Controller AIN0 overrange")
+    field(INP,  "$(P)BITSSTATUS.B2 CP MS")
+    field(ZSV,  "NO_ALARM")
+    field(OSV,  "MINOR")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(archive, "VAL")
+}
+
+record(bi, "$(P)STURANGEAIN1")
+{
+    field(DESC, "Controller AIN1 underrange")
+    field(INP,  "$(P)BITSSTATUS.B3 CP MS")
+    field(ZSV,  "NO_ALARM")
+    field(OSV,  "MINOR")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(archive, "VAL")
+}
+record(bi, "$(P)STORANGEAIN1")
+{
+    field(DESC, "Controller AIN1 overrange")
+    field(INP,  "$(P)BITSSTATUS.B4 CP MS")
+    field(ZSV,  "NO_ALARM")
+    field(OSV,  "MINOR")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(archive, "VAL")
+}
+record(bi, "$(P)STRELAY0")
+{
+    field(DESC, "Relay 0")
+    field(INP,  "$(P)BITSSTATUS.B5 CP MS")
+    field(ZSV,  "NO_ALARM")
+    field(OSV,  "MINOR")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(archive, "VAL")
+}
+record(bi, "$(P)STRELAY1")
+{
+    field(DESC, "Relay 1")
+    field(INP,  "$(P)BITSSTATUS.B6 CP MS")
+    field(ZSV,  "NO_ALARM")
+    field(OSV,  "MINOR")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(archive, "VAL")
+}
+record(bi, "$(P)STPARCHANGED")
+{
+    field(DESC, "Param changed by user")
+    field(INP,  "$(P)BITSSTATUS.B7 CP MS")
+    field(ZSV,  "NO_ALARM")
+    field(OSV,  "MINOR")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    info(archive, "VAL")
+}
+
+### SIMULATION RECORDS ###
+
+record(stringout,"$(P)SIM:DEBUG")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringout,"$(P)SIM:DISPTEXTOUT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(stringout,"$(P)SIM:DISPTEXT")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+record(mbbo,"$(P)SIM:REMOTEMODE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:REMOTEMODE","$(P)SIM:REMOTEMODE:SP")
+
+record(stringout,"$(P)SIM:ID")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

@@ -1,0 +1,13 @@
+# Set points do not have units set because it will cause it to be processed thus sending a possibly wrong value
+# to the display 
+
+file $(UTILITIES)/db/unit_setter.template { 
+  pattern 
+    {P,    FROM, TO}
+    
+    {"\$(P)", "CH1:RANGE:UNITS", "CH1:VAL"}
+    {"\$(P)", "CH1:RANGE:UNITS", "CH1:VAL:SP:RBV"}
+    {"\$(P)", "CH2:RANGE:UNITS", "CH2:VAL"}
+	{"\$(P)", "CH2:RANGE:UNITS", "CH2:VAL:SP:RBV"}    
+}
+
