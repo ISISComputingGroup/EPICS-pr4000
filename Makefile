@@ -24,6 +24,13 @@ iocBoot_DEPEND_DIRS += $(filter %App,$(DIRS))
 DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocs))
 iocs_DEPEND_DIRS += $(filter %App,$(DIRS))
 
+TEST_RUNNER = $(TOP)/pr4000App/src/O.$(EPICS_HOST_ARCH)/runner
+
 include $(TOP)/configure/RULES_TOP
 
+.PHONY: test
+test:
+ifneq ($(wildcard $(TEST_RUNNER)*),)
+	$(TEST_RUNNER) --gtest_output=xml:$(TOP)/test-reports/TEST-PR4000.xml
+endif
 

@@ -1,9 +1,14 @@
 #include <stdlib.h>
+#include <string.h>
 #include <registryFunction.h>
 #include <aSubRecord.h>
-#include <epicsExport.h>
+#include <menuFtype.h>
+#include <errlog.h>
 #include <epicsTypes.h>
-#include <string.h>
+#include <epicsString.h>
+#include <units.h>
+
+#include <epicsExport.h>
 
 static const char* UNITS_ARRAY[] = {
     "uBar",  // 0
@@ -31,39 +36,44 @@ static const char* UNITS_ARRAY[] = {
 
 #define UNITS_ARRAY_SIZE (sizeof(UNITS_ARRAY) / sizeof(const char*))
 
-static long units_number_to_string(aSubRecord *prec)
+long units_number_to_string(aSubRecord *prec)
 {
-    int i;
-    epicsOldString result;
-    
-    i = *(int*) prec->a;
-    
+    epicsInt32 i;
+    epicsOldString* result = (epicsOldString*)prec->vala;
+    i = *(epicsInt32*)prec->a;
+    if (prec->fta != menuFtypeLONG || prec->ftva != menuFtypeSTRING)
+    {
+         errlogPrintf("%s incorrect input type. Should be A (LONG), VALA (STRING)", prec->name);
+         return -1;
+    }
+
     if (0 <= i && i < UNITS_ARRAY_SIZE)
     {
-        strcpy_s(result, MAX_STRING_SIZE, UNITS_ARRAY[i]);
+        strcpy_s(*result, MAX_STRING_SIZE, UNITS_ARRAY[i]);
     }
     else
     {
-        strcpy_s(result, MAX_STRING_SIZE, "Unknown");
+        strcpy_s(*result, MAX_STRING_SIZE, "Unknown");
     }
-    
-    prec->vala = result;
-    
     return 0;
 }
 
-static long units_string_to_number(aSubRecord *prec)
+long units_string_to_number(aSubRecord *prec)
 {
-    int i;
-    epicsOldString* input;
-    
-    input = (epicsOldString*) prec->a;
-    
+    epicsInt32 i;
+    epicsOldString* input = (epicsOldString*) prec->a;
+    if (prec->fta != menuFtypeSTRING || prec->ftva != menuFtypeLONG)
+    {
+         errlogPrintf("%s incorrect input type. Should be A (STRING), VALA (LONG)", prec->name);
+         return -1;
+    }
+
     for (i=0; i<UNITS_ARRAY_SIZE; ++i) 
     {
-        if (_stricmp(input, UNITS_ARRAY[i]) == 0)
+        // use case sensitive comparison as e.g. "mBar" and "MBar" are not the same
+        if (strcmp(*input, UNITS_ARRAY[i]) == 0)
         {
-            *(long*) prec->vala = i;
+            *(epicsInt32*)prec->vala = i;
             return 0;
         }
     }

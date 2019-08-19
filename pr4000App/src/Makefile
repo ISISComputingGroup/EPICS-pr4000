@@ -20,4 +20,15 @@ pr4000_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 pr4000_SRCS += units.c
 
+# googleTest Runner
+ifeq ($(findstring 10.0,$(VCVERSION)),)
+
+TESTPROD_HOST += runner
+USR_CPPFLAGS += -I$(GTEST)/googletest/include
+runner_SRCS += units.c units_tests.cpp run_all_tests.cc
+runner_LIBS += gtest
+runner_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+endif
+
 include $(TOP)/configure/RULES
