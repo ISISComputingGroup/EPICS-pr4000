@@ -49,11 +49,11 @@ long units_number_to_string(aSubRecord *prec)
 
     if (0 <= i && i < UNITS_ARRAY_SIZE)
     {
-        strcpy_s(*result, MAX_STRING_SIZE, UNITS_ARRAY[i]);
+        strncpy(*result, UNITS_ARRAY[i], MAX_STRING_SIZE);
     }
     else
     {
-        strcpy_s(*result, MAX_STRING_SIZE, "Unknown");
+        strncpy(*result, "Unknown", MAX_STRING_SIZE);
     }
     return 0;
 }
